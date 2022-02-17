@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+: <<COMMENT
+Author: arpan <arpan.rec@outlook.com>
+This file is managed from https://github.com/arpanrec/dotfiles/blob/bash-zsh/.exporterrc
+COMMENT
+
+LD_LIBRARY_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+if ! [[ "$PATH" =~ /usr/local/bin: ]]
+then
+    PATH="/usr/local/bin:$PATH"
+fi
+
+# shellcheck source=/dev/null
+if [ -f "$HOME/.secrets" ] ; then
+	source "$HOME/.secrets"
+fi
+
+if [ -f "$HOME/.local/share/go/bin/go" ] && [[ ! "$PATH" =~ $HOME/.local/share/go/bin: ]] ; then
+	PATH="$HOME/.local/share/go/bin:$PATH"
+fi
+
+export GOPATH="$HOME/go"
+
+if [ -f "$HOME/.local/share/node/bin/node" ] && [[ ! "$PATH" =~ $HOME/.local/share/node/bin: ]] ; then
+	PATH="$HOME/.local/share/node/bin:$PATH"
+fi
+
+if [[ -f "$HOME/.local/share/java/bin/java" ]] && [[ ! "$PATH" =~ $HOME/.local/share/java/bin: ]] ; then
+	PATH="$HOME/.local/share/java/bin:$PATH"
+fi
+
+if hash javac &>/dev/null ; then
+	JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which javac)")")")
+	export JAVA_HOME
+elif hash java &>/dev/null; then
+	JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which java)")")")
+	export JAVA_HOME
+fi
+
+if [[ -f "$HOME/.local/share/maven/bin/mvn" ]] && [[ ! "$PATH" =~ $HOME/.local/share/maven/bin: ]] ; then
+	PATH="$HOME/.local/share/maven/bin:$PATH"
+fi
+
+if hash mvn &>/dev/null ; then
+	M2_HOME=$(dirname "$(dirname "$(readlink -f "$(which mvn)")")")
+	export M2_HOME
+	export MAVEN_HOME="${M2_HOME}"
+fi
+
+if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+export PATH
+
+GPG_TTY="$(tty)"
+export GPG_TTY
+
+if hash vim &>/dev/null; then
+	export EDITOR=vim
+fi

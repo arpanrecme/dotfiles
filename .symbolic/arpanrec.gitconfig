@@ -1,0 +1,16 @@
+[init]
+	defaultBranch = main
+[user]
+	name = arpan
+	email = me@arpanrec.com
+	signingkey = B9A81CB849629C6341EC0AACD813A505EB696576
+[pull]
+	rebase = false
+[credential]
+	helper = store
+[push]
+	followTags = true
+[commit]
+	gpgsign = true
+[core]
+	eol = lf
