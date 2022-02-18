@@ -1,6 +1,59 @@
 #!/usr/bin/env bash
 set -e
 
+__setup_git_interactively() {
+
+  read -r -p "Enter Username : [Leave Empty to skip]" __gitconfig_username
+
+  if [[ -n "${__gitconfig_username}"  ]]; then
+    git config --global user.name "${__gitconfig_username}"
+  fi
+
+  read -r -p "Enter Email ID : [Leave Empty to skip]" __gitconfig_email
+
+  if [[ -n "${__gitconfig_username}"  ]]; then
+    git config --global user.email "${__gitconfig_email}"
+  fi
+}
+
+if [[ -f "${HOME}/.gitconfig" ]]; then
+  echo "current gitconfig below"
+  echo ""
+  cat "${HOME}/.gitconfig"
+  echo ""
+fi
+
+read -r -n 1 -p "Press y/Y if to Add/Update gitconfig? " __wish_to_update_gitconfig
+echo ""
+if [[ "${__wish_to_update_gitconfig}" == "Y" || "${__wish_to_update_gitconfig}" == "y" ]]; then
+  echo ""
+  echo "Enter your choice to create the gitconfig symlink [If present, ${HOME}/.gitconfig will be deleted] : "
+  echo "Press a for arpanrec git config, [If present, ${HOME}/.gitconfig will be deleted]"
+  echo "Press d for dummy git config, [If present, ${HOME}/.gitconfig will be deleted]"
+  echo "Press any other key to setup gitconfig interactively"
+  read -r -n1 __symlink_gitconfig
+  echo ""
+
+  case ${__symlink_gitconfig} in
+
+  a | A)
+    rm -rf "${HOME}/.gitconfig"
+    echo "Here"
+    ln -s "${HOME}/.symbolic/arpanrec.gitconfig" "${HOME}/.gitconfig"
+    ;;
+
+  d | D)
+    rm -rf "${HOME}/.gitconfig"
+    ln -s "${HOME}/.symbolic/dummy.gitconfig" "${HOME}/.gitconfig"
+    ;;
+
+  *)
+    __setup_git_interactively
+    ;;
+  esac
+
+fi
+
 __looksgood() {
   read -r -n 1 -p "🤔🤔 Press y/Y if all is looking good? : 🤔🤔" __looks_good
   if [[ "$__looks_good" == "Y" || "$__looks_good" == "y" ]]; then
