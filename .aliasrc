@@ -29,7 +29,7 @@ alias vim='nvim'
 alias bwl='bw login --apikey'
 alias bws='bw sync'
 alias bwu='export BW_SESSION=$(bw unlock --raw)'
-alias bwus='echo "export BW_SESSION=$BW_SESSION" >> $HOME/.secrets'
+alias bwus='$HOME/.local/share/bitwarden_utils.sh'
 alias s2g='ssh_auth_sock_to_gpg.sh'
 
 # Directories
