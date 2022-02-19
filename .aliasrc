@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 : <<COMMENT
-Author: arpan <arpan.rec@outlook.com>
-This file is managed from https://github.com/arpanrec/dotfiles/blob/bash-zsh/.aliasrc
+Author: arpan <me@arpanrec.com>
+This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.aliasrc
 COMMENT
 
 # My Dot Files Git Repo
@@ -26,9 +26,9 @@ alias vim='nvim'
 # alias codesudo="sudo code --user-data-dir=/tmp/vscode-root-user-data-dir --no-sandbox"
 
 # Password manager and Authentication manager
-alias bwl='bw login --apikey'
-alias bws='bw sync'
-alias bwu='export BW_SESSION=$(bw unlock --raw)'
+# alias bwl='bw login --apikey'
+# alias bws='bw sync'
+# alias bwu='export BW_SESSION=$(bw unlock --raw)'
 alias bwus='$HOME/.local/bin/bitwarden_utils.sh'
 alias s2g='ssh_auth_sock_to_gpg.sh'
 

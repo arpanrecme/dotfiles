@@ -3,19 +3,28 @@
 # ~/.bashrc
 #
 
+: <<COMMENT
+Author: arpan <me@arpanrec.com>
+This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.bashrc
+COMMENT
+
 # shellcheck source=/dev/null
 if [ -f "/etc/bashrc" ]; then
 	source /etc/bashrc
 fi
 
+# shellcheck source=/dev/null
 if [ -f /etc/bash.bashrc ]; then
 	source /etc/bash.bashrc
 fi
 
+# shellcheck source=/dev/null
 [ -f "$HOME/.exporterrc" ] && source "$HOME/.exporterrc"
 
+# shellcheck source=/dev/null
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
+# shellcheck source=/dev/null
 if [ -f "$HOME/.dotfiles/linode_cli_completion.sh" ]; then
 	source "$HOME/.dotfiles/linode_cli_completion.sh"
 fi
@@ -81,10 +90,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# shellcheck source=/dev/null
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# shellcheck source=/dev/null
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -96,6 +107,7 @@ fi
 # [ -f "/usr/local/bin/zsh" ] && exec /usr/local/bin/zsh -l
 
 export BASH_IT="$HOME/.bash_it"
+# shellcheck source=/dev/null
 if [ -f "$BASH_IT/bash_it.sh" ]; then
 	export BASH_IT_THEME='atomic'
 	export BASH_IT_DEVELOPMENT_BRANCH='master'
@@ -119,6 +131,7 @@ if hash powerline-shell &>/dev/null && [[ ! -f "$BASH_IT/bash_it.sh" ]]; then
 	fi
 fi
 
+# shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if hash terraform &>/dev/null ; then

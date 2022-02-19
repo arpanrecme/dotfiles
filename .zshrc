@@ -1,3 +1,8 @@
+: <<COMMENT
+Author: arpan <me@arpanrec.com>
+This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.zshrc
+COMMENT
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
