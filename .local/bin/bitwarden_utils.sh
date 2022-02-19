@@ -152,13 +152,13 @@ if [ "${__is_download_gpg_cert}" == "Y" ] || [ "${__is_download_gpg_cert}" == "y
     __item_id=$(echo "${item}" | jq -r .id)
     for attachment in $(echo "${item}" | jq -r -c '.attachments' | jq -r -c '.[] | @base64 '); do
       attachment=$(echo "${attachment}" | base64 --decode)
-      filename=$(echo "${attachment}" | jq -r .fileName)
-      if [ "$filename" == "private.asc" ]; then
-        attachment_id=$(echo "${attachment}" | jq -r .id)
+      attachment_id=$(echo "${attachment}" | jq -r .id)
+      __raw_file=$(bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw)
+      if [[ "$(echo "${__raw_file}" | head -n 1)" =~ "BEGIN PGP PRIVATE KEY BLOCK" ]]; then
         echo ""
-        bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw | \
+        bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw |
           gpg --allow-secret-key-import --import --batch --passphrase \
-          "$(echo "${item}" | jq .login.password -r)"
+            "$(echo "${item}" | jq .login.password -r)"
       fi
 
     done
