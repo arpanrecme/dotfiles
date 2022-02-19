@@ -28,6 +28,8 @@ if [ "${current_status}" == "unauthenticated" ]; then
       fi
       read -r -n1 -p "Press Y/y to save client id and client secret in ${HOME}/.secrets :: " __save_apikeys_in_secrets
       if [ "${__save_apikeys_in_secrets}" == "Y" ] || [ "${__save_apikeys_in_secrets}" == "y" ]; then
+        sed -i '/export BW_CLIENTID=*/d' "${HOME}/.secrets"
+        sed -i '/export BW_CLIENTSECRET=*/d' "${HOME}/.secrets"
         echo "export BW_CLIENTID=${__bw_client_id}" >>"${HOME}/.secrets"
         echo "export BW_CLIENTSECRET=${__bw_client_secret}" >>"${HOME}/.secrets"
       fi
@@ -78,6 +80,7 @@ if [ "${current_status}" == "locked" ]; then
   read -n1 -r -p "Set session id in ${HOME}/.secrets : " __set_session_id_in_secrets
   echo ""
   if [ "${__set_session_id_in_secrets}" == "Y" ] || [ "${__set_session_id_in_secrets}" == "y" ]; then
+    sed -i '/export BW_CLIENTSECRET=*/d' "${HOME}/.secrets"
     echo "export BW_SESSION=${__bw_session_id}" >>"${HOME}/.secrets"
   fi
 fi
