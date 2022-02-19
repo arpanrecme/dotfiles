@@ -80,7 +80,7 @@ if [ "${current_status}" == "locked" ]; then
   read -n1 -r -p "Set session id in ${HOME}/.secrets : " __set_session_id_in_secrets
   echo ""
   if [ "${__set_session_id_in_secrets}" == "Y" ] || [ "${__set_session_id_in_secrets}" == "y" ]; then
-    sed -i '/export BW_CLIENTSECRET=*/d' "${HOME}/.secrets"
+    sed -i '/export BW_SESSION=*/d' "${HOME}/.secrets"
     echo "export BW_SESSION=${__bw_session_id}" >>"${HOME}/.secrets"
   fi
 fi
