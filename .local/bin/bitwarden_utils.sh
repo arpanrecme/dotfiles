@@ -138,29 +138,34 @@ fi
 
 #############################################################################################################################
 #############################################################################################################################
-
 echo ""
-echo "Downloading gpg key for code signing"
+echo "Will download attachment with name \"private.asc\" with entry name containing \"GPG Certificate\""
+echo "Password fiend should contain the GPG certificate password"
+read -r -n1 -p "Download GPG Certificate from bitwarden : [y/n] " __is_download_gpg_cert
 echo ""
+if [ "${__is_download_gpg_cert}" == "Y" ] || [ "${__is_download_gpg_cert}" == "y" ]; then
 
-mkdir -p "${HOME}/.gnupg" && chmod 700 "${HOME}/.gnupg"
+  bw sync
 
-__git_gpg_key=$(git config --get user.signingkey)
+  for item in $(bw list items --search 'GPG Certificate' --raw | jq -r -c '.[] | @base64'); do
+    item=$(echo "${item}" | base64 --decode)
+    __item_id=$(echo "${item}" | jq -r .id)
+    for attachment in $(echo "${item}" | jq -r -c '.attachments' | jq -r -c '.[] | @base64 '); do
+      attachment=$(echo "${attachment}" | base64 --decode)
+      filename=$(echo "${attachment}" | jq -r .fileName)
+      if [ "$filename" == "private.asc" ]; then
+        attachment_id=$(echo "${attachment}" | jq -r .id)
+        echo ""
+        bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw | \
+          gpg --allow-secret-key-import --import --batch --passphrase \
+          "$(echo "${item}" | jq .login.password -r)"
+      fi
 
-echo ""
-echo "GPG Key id attached in gitconfig $__git_gpg_key"
-echo ""
+    done
 
-__bw_git_gpg_item=$(bw get item "$__git_gpg_key")
+  done
 
-bw get attachment "private.asc" --itemid "$(echo "$__bw_git_gpg_item" | jq .id -r)" --raw |
-  gpg --allow-secret-key-import --import --batch --passphrase "$(echo "$__bw_git_gpg_item" | jq .login.password -r)"
-
-echo ""
-echo "Listing private keys"
-echo ""
-gpg -K
-echo ""
+fi
 
 #############################################################################################################################
 #############################################################################################################################
