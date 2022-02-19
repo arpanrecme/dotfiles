@@ -63,6 +63,7 @@ if [ "${current_status}" == "locked" ]; then
     echo ""
     exit 1
   fi
+  echo "Please Wait!!!!!!!!!!!!"
   echo ""
   __bw_session_id=$(bw unlock "${__bw_master_password}" --raw)
   echo ""
