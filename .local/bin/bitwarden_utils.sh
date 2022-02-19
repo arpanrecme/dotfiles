@@ -20,12 +20,27 @@ if [[ "${current_status}" == "unauthenticated" ]]; then
       echo ""
       read -r -p "Enter Client Secret : " -s __bw_client_secret
       echo ""
+      if [[ -z "${__bw_client_id}" || -z "${__bw_client_secret}" ]]; then
+        echo ""
+        echo "Error!!!!!!     Enter Valid Keys"
+        echo ""
+        exit 1
+      fi
       read -r -n1 -p "Press y to save client id and client secret in ${HOME}/.secrets" __save_apikeys_in_secrets
       if [[ "${__save_apikeys_in_secrets}" == "Y" || "${__save_apikeys_in_secrets}" == "y" ]]; then
         echo "export BW_CLIENTID=${__bw_client_id}" >>"${HOME}/.secrets"
         echo "export BW_CLIENTSECRET=${__bw_client_secret}" >>"${HOME}/.secrets"
       fi
+      echo ""
+      echo "Logging in to bitwarden cli, Please Wait!!!!!!!!!!!!"
+      echo ""
       BW_CLIENTID="${__bw_client_id}" BW_CLIENTSECRET="${__bw_client_secret}" bw login --apikey
+
+    else
+      echo ""
+      echo "Client ID and Client Secret found in environment"
+      echo "Please Wait!!!!!!!!!!!!"
+      echo ""
     fi
 
     bw login --apikey
@@ -41,6 +56,13 @@ fi
 if [[ "${current_status}" == "locked" ]]; then
   echo ""
   echo "Bitwarden is locked"
+  read -r -p "Unlocking Bitwarden, Enter you credential : " -s __bw_master_password
+  if [[ -z "${__bw_master_password}" ]]; then
+    echo ""
+    echo "Enter Valid Credential"
+    echo ""
+    exit 1
+  fi
   echo ""
   __bw_session_id=$(bw unlock --raw)
   echo ""
@@ -64,21 +86,47 @@ fi
 #############################################################################################################################
 
 echo ""
-echo "Downloading openssh key from bit warden"
+read -r -n1 -p "Download openssh key from bitwarden : [y/n] " __is_download_openssh_key
 echo ""
-mkdir -p "${HOME}/.ssh" && chmod 700 "${HOME}/.ssh"
-rm -rf /home/arpan/.ssh/arpan_id_rsa
-__openssh_key_bw_item=$(bw get item "OpenSSH Key" --raw)
+if [[ "${__is_download_openssh_key}" == "Y" || "${__is_download_openssh_key}" == "y" ]]; then
 
-bw get attachment arpan_id_rsa --itemid "$(echo "$__openssh_key_bw_item" | jq .id -r)" --raw >"${HOME}/.ssh/arpan_id_rsa"
+  __ssh_key_directory="${HOME}/.ssh"
 
-chmod 400 "${HOME}/.ssh/arpan_id_rsa"
-echo ""
-file "${HOME}/.ssh/arpan_id_rsa"
-echo ""
-echo ""
-echo "Open SSH Key Written in ${HOME}/.ssh/arpan_id_rsa"
-echo ""
+  for item in $(bw list items --search 'OpenSSH key' --raw | jq -r -c '.[] | @base64'); do
+    item=$(echo "${item}" | base64 --decode)
+    __item_id=$(echo "${item}" | jq -r .id)
+    for attachment in $(echo "${item}" | jq -r -c '.attachments' | jq -r -c '.[] | @base64 '); do
+      attachment=$(echo "${attachment}" | base64 --decode)
+      filename=$(echo "${attachment}" | jq -r .fileName)
+      attachment_id=$(echo "${attachment}" | jq -r .id)
+      __expected_file_save_path=${__ssh_key_directory}/${filename}
+      echo ""
+      echo "Downloading \"${filename}\" from \"$(echo "${item}" | jq -r .name)\" to \"${__expected_file_save_path}\""
+      echo ""
+      if [[ -f "${__expected_file_save_path}" ]]; then
+        echo ""
+        echo "File already exists ${__expected_file_save_path}"
+        read -r -n1 -p "press y to overwrite, or any other key to skip : " __overwrite_keyfile
+        echo ""
+        if [[ ${__overwrite_keyfile} == "y" || ${__overwrite_keyfile} == "Y" ]]; then
+          bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw \
+            >"${__expected_file_save_path}"
+        else
+          __expected_file_save_path=${__ssh_key_directory}/${filename}_$(date +%s)
+          echo ""
+          echo "Save file to ${__expected_file_save_path}"
+          echo ""
+          bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw \
+            >"${__expected_file_save_path}"
+        fi
+      else
+        bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw >"${__expected_file_save_path}"
+      fi
+
+    done
+  done
+
+fi
 
 #############################################################################################################################
 #############################################################################################################################
