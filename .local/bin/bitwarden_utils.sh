@@ -26,7 +26,7 @@ if [ "${current_status}" == "unauthenticated" ]; then
         echo ""
         exit 1
       fi
-      read -r -n1 -p "Press y to save client id and client secret in ${HOME}/.secrets" __save_apikeys_in_secrets
+      read -r -n1 -p "Press Y/y to save client id and client secret in ${HOME}/.secrets :: " __save_apikeys_in_secrets
       if [ "${__save_apikeys_in_secrets}" == "Y" ] || [  "${__save_apikeys_in_secrets}" == "y" ]; then
         echo "export BW_CLIENTID=${__bw_client_id}" >>"${HOME}/.secrets"
         echo "export BW_CLIENTSECRET=${__bw_client_secret}" >>"${HOME}/.secrets"
