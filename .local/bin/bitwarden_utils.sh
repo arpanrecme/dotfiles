@@ -91,6 +91,7 @@ fi
 #############################################################################################################################
 
 echo ""
+echo "Will download any attachment with entry name containing \"OpenSSH key\""
 read -r -n1 -p "Download openssh key from bitwarden : [y/n] " __is_download_openssh_key
 echo ""
 if [ "${__is_download_openssh_key}" == "Y" ] || [ "${__is_download_openssh_key}" == "y" ]; then
