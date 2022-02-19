@@ -22,7 +22,7 @@ if [[ "${current_status}" == "unauthenticated" ]]; then
       echo ""
       if [[ -z "${__bw_client_id}" || -z "${__bw_client_secret}" ]]; then
         echo ""
-        echo "Error!!!!!!     Enter Valid Keys"
+        echo "Error!!!!!!!!!!!!!!!! Enter Valid Keys"
         echo ""
         exit 1
       fi
@@ -59,13 +59,19 @@ if [[ "${current_status}" == "locked" ]]; then
   read -r -p "Unlocking Bitwarden, Enter you credential : " -s __bw_master_password
   if [[ -z "${__bw_master_password}" ]]; then
     echo ""
-    echo "Enter Valid Credential"
+    echo "Error!!!!!!!!!!!!!!!! Enter Valid Credential"
     echo ""
     exit 1
   fi
   echo ""
-  __bw_session_id=$(bw unlock --raw)
+  __bw_session_id=$(bw unlock "${__bw_master_password}" --raw)
   echo ""
+  if [[ -z "${__bw_session_id}" ]]; then
+    echo ""
+    echo "Error!!!!!!!!!!!!!!!! Unable to unlock"
+    echo ""
+    exit 1
+  fi
   echo "Session id is ${__bw_session_id}"
   echo ""
   echo "export BW_SESSION=${__bw_session_id}"
@@ -89,6 +95,8 @@ echo ""
 read -r -n1 -p "Download openssh key from bitwarden : [y/n] " __is_download_openssh_key
 echo ""
 if [[ "${__is_download_openssh_key}" == "Y" || "${__is_download_openssh_key}" == "y" ]]; then
+
+  bw sync
 
   __ssh_key_directory="${HOME}/.ssh"
 
