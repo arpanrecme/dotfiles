@@ -8,26 +8,26 @@ __get_current_status() {
 
 current_status=$(__get_current_status)
 
-if [[ "${current_status}" == "unauthenticated" ]]; then
+if [ "${current_status}" == "unauthenticated" ]; then
   echo "Bitwarden is not logged in"
   echo "Press Y if you wish to use API key for login :: (Default email id based login)"
   read -r -n1 -p "Press any other key to skip : " __is_api_login
   echo ""
-  if [[ "${__is_api_login}" == "Y" || "${__is_api_login}" == "y" ]]; then
+  if [ "${__is_api_login}" == "Y" ] || [ "${__is_api_login}" == "y" ]; then
 
-    if [[ -z "${BW_CLIENTID}" || -z "${BW_CLIENTSECRET}" ]]; then
+    if [ -z "${BW_CLIENTID}" ] || [  -z "${BW_CLIENTSECRET}" ]; then
       read -r -p "Enter Client ID : " -s __bw_client_id
       echo ""
       read -r -p "Enter Client Secret : " -s __bw_client_secret
       echo ""
-      if [[ -z "${__bw_client_id}" || -z "${__bw_client_secret}" ]]; then
+      if [ -z "${__bw_client_id}" ] || [  -z "${__bw_client_secret}" ]; then
         echo ""
         echo "Error!!!!!!!!!!!!!!!! Enter Valid Keys"
         echo ""
         exit 1
       fi
       read -r -n1 -p "Press y to save client id and client secret in ${HOME}/.secrets" __save_apikeys_in_secrets
-      if [[ "${__save_apikeys_in_secrets}" == "Y" || "${__save_apikeys_in_secrets}" == "y" ]]; then
+      if [ "${__save_apikeys_in_secrets}" == "Y" ] || [  "${__save_apikeys_in_secrets}" == "y" ]; then
         echo "export BW_CLIENTID=${__bw_client_id}" >>"${HOME}/.secrets"
         echo "export BW_CLIENTSECRET=${__bw_client_secret}" >>"${HOME}/.secrets"
       fi
@@ -53,11 +53,11 @@ if [[ "${current_status}" == "unauthenticated" ]]; then
   current_status=$(__get_current_status)
 fi
 
-if [[ "${current_status}" == "locked" ]]; then
+if [ "${current_status}" == "locked" ]; then
   echo ""
   echo "Bitwarden is locked"
   read -r -p "Unlocking Bitwarden, Enter you credential : " -s __bw_master_password
-  if [[ -z "${__bw_master_password}" ]]; then
+  if [ -z "${__bw_master_password}" ]; then
     echo ""
     echo "Error!!!!!!!!!!!!!!!! Enter Valid Credential"
     echo ""
@@ -66,7 +66,7 @@ if [[ "${current_status}" == "locked" ]]; then
   echo ""
   __bw_session_id=$(bw unlock "${__bw_master_password}" --raw)
   echo ""
-  if [[ -z "${__bw_session_id}" ]]; then
+  if [ -z "${__bw_session_id}" ]; then
     echo ""
     echo "Error!!!!!!!!!!!!!!!! Unable to unlock"
     echo ""
@@ -78,7 +78,7 @@ if [[ "${current_status}" == "locked" ]]; then
   echo ""
   read -n1 -r -p "Set session id in ${HOME}/.secrets : " __set_session_id_in_secrets
   echo ""
-  if [[ "${__set_session_id_in_secrets}" == "Y" || "${__set_session_id_in_secrets}" == "y" ]]; then
+  if [ "${__set_session_id_in_secrets}" == "Y" ] || [  "${__set_session_id_in_secrets}" == "y" ]; then
     echo "export BW_SESSION=${__bw_session_id}" >>"${HOME}/.secrets"
   fi
 fi
@@ -94,7 +94,7 @@ fi
 echo ""
 read -r -n1 -p "Download openssh key from bitwarden : [y/n] " __is_download_openssh_key
 echo ""
-if [[ "${__is_download_openssh_key}" == "Y" || "${__is_download_openssh_key}" == "y" ]]; then
+if [ "${__is_download_openssh_key}" == "Y" ] || [  "${__is_download_openssh_key}" == "y" ]; then
 
   bw sync
 
@@ -111,12 +111,12 @@ if [[ "${__is_download_openssh_key}" == "Y" || "${__is_download_openssh_key}" ==
       echo ""
       echo "Downloading \"${filename}\" from \"$(echo "${item}" | jq -r .name)\" to \"${__expected_file_save_path}\""
       echo ""
-      if [[ -f "${__expected_file_save_path}" ]]; then
+      if [ -f "${__expected_file_save_path}" ]; then
         echo ""
         echo "File already exists ${__expected_file_save_path}"
         read -r -n1 -p "press y to overwrite, or any other key to skip : " __overwrite_keyfile
         echo ""
-        if [[ ${__overwrite_keyfile} == "y" || ${__overwrite_keyfile} == "Y" ]]; then
+        if [ "${__overwrite_keyfile}" == "y" ] || [  "${__overwrite_keyfile}" == "Y" ]; then
           bw get attachment --itemid "${__item_id}" "${attachment_id}" --raw \
             >"${__expected_file_save_path}"
         else
