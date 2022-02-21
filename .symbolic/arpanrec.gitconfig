@@ -14,3 +14,6 @@
 	gpgsign = true
 [core]
 	eol = lf
+	autocrlf = false
+[fetch]
+	prune = false
