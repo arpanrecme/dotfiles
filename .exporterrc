@@ -59,6 +59,8 @@ export PATH
 GPG_TTY="$(tty)"
 export GPG_TTY
 
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 if hash vim &>/dev/null; then
 	export EDITOR=vim
 fi
