@@ -51,7 +51,6 @@
     "shellscript": true
   },
   "terminal.integrated.fontFamily": "'Hack Nerd Font'",
-  "workbench.startupEditor": "none",
   "editor.mouseWheelZoom": true,
   "git.confirmSync": false,
   "git.autofetch": true,
@@ -69,5 +68,6 @@
   "workbench.colorTheme": "Dracula",
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  }
+  },
+  "workbench.startupEditor": "none"
 }
