@@ -6,7 +6,6 @@ detailViewIconSize=16
 
 [MainWindow]
 MenuBar=Disabled
-RestorePositionForNextInstance=false
 State=AAAA/wAAAAD9AAAAAQAAAAAAAAAAAAAAAPwCAAAAAfsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAANQA////AAAHgAAABBwAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAgAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAAAAAAcAHMAZQBzAHMAaQBvAG4AVABvAG8AbABiAGEAcgEAAADi/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 eDP Height 1920x1200=1101
@@ -24,6 +23,9 @@ eDP-1 Width 2560x1600=2560
 eDP-1 Window-Maximized 2560x1600=true
 eDP-1 XPosition 2560x1600=0
 eDP-1 YPosition 2560x1600=55
+
+[Notification Messages]
+CloseSingleTab=true
 
 [UiSettings]
 ColorScheme=
