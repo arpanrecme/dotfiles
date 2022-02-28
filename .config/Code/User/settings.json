@@ -67,7 +67,8 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Dracula",
   "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "files.trimTrailingWhitespace": false
   },
   "workbench.startupEditor": "none",
   "python.linting.enabled": true,
