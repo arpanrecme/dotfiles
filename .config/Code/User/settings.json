@@ -88,4 +88,33 @@
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
+  "files.associations": {
+    "**/tasks/**/*.yml": "ansible",
+    "site.yml": "ansible", // Change this when working with kubernetes
+    "**/*.tf": "terraform",
+    "**/requirements.txt": "pip-requirements"
+  },
+  "ansible.validation": true,
+  "ansible.ansibleLint.enabled": true,
+  "ansible.ansible.path": "ansible",
+  "html.format.wrapLineLength": 180,
+  "terminal.integrated.persistentSessionScrollback": 1000,
+  "yaml.format.printWidth": 180,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 180,
+  "editor.minimap.enabled": false,
+  "git.openDiffOnClick": true,
+  "java.checkstyle.autocheck": true,
+  "maven.dependency.enableConflictDiagnostics": true,
+  "[java]": {
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "breadcrumbs.showArrays": true,
+    "outline.showVariables": true,
+    "editor.maxTokenizationLineLength": 20000,
+  },
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.format.settings.profile": "GoogleStyle",
+  "[python]": {
+    "editor.wordBasedSuggestions": false
+  }
 }
