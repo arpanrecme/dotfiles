@@ -38,7 +38,7 @@
     "**/env.bak/**": true,
     "**/venv.bak/**": true
   },
-  "redhat.telemetry.enabled": true,
+  "redhat.telemetry.enabled": false,
   "explorer.confirmDelete": false,
   "editor.inlineSuggest.enabled": true,
   "git.enableSmartCommit": true,
@@ -90,7 +90,7 @@
   },
   "files.associations": {
     "**/tasks/**/*.yml": "ansible",
-    "site.yml": "ansible", // Change this when working with kubernetes
+    "site*.yml": "ansible", // Change this when working with kubernetes
     "**/*.tf": "terraform",
     "**/requirements.txt": "pip-requirements"
   },
@@ -116,5 +116,6 @@
   "java.format.settings.profile": "GoogleStyle",
   "[python]": {
     "editor.wordBasedSuggestions": false
-  }
+  },
+  "telemetry.telemetryLevel": "off"
 }
