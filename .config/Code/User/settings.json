@@ -90,6 +90,7 @@
   },
   "files.associations": {
     "**/tasks/**/*.yml": "ansible",
+    "**/ansible/**/*.yml": "ansible",
     "site*.yml": "ansible", // Change this when working with kubernetes
     "**/*.tf": "terraform",
     "**/requirements.txt": "pip-requirements"
