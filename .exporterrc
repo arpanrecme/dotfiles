@@ -9,6 +9,7 @@ export LD_LIBRARY_PATH
 
 if ! [[ "$PATH" =~ /usr/local/bin: ]]; then
 	PATH="/usr/local/bin:$PATH"
+	export PATH
 fi
 
 # shellcheck source=/dev/null
@@ -18,16 +19,19 @@ fi
 
 if [ -f "$HOME/.local/share/go/bin/go" ] && [[ ! "$PATH" =~ $HOME/.local/share/go/bin: ]]; then
 	PATH="$HOME/.local/share/go/bin:$PATH"
+	export PATH
 fi
 
 export GOPATH="$HOME/go"
 
 if [ -f "$HOME/.local/share/node/bin/node" ] && [[ ! "$PATH" =~ $HOME/.local/share/node/bin: ]]; then
 	PATH="$HOME/.local/share/node/bin:$PATH"
+	export PATH
 fi
 
 if [[ -f "$HOME/.local/share/java/bin/java" ]] && [[ ! "$PATH" =~ $HOME/.local/share/java/bin: ]]; then
 	PATH="$HOME/.local/share/java/bin:$PATH"
+	export PATH
 fi
 
 if hash javac &>/dev/null; then
@@ -40,6 +44,12 @@ fi
 
 if [[ -f "$HOME/.local/share/maven/bin/mvn" ]] && [[ ! "$PATH" =~ $HOME/.local/share/maven/bin: ]]; then
 	PATH="$HOME/.local/share/maven/bin:$PATH"
+	export PATH
+fi
+
+if [[ -f "$HOME/.local/share/gradle/bin/gradle" ]] && [[ ! "$PATH" =~ $HOME/.local/share/gradle/bin/gradle: ]]; then
+	PATH="$HOME/.local/share/gradle/bin:$PATH"
+	export PATH
 fi
 
 if hash mvn &>/dev/null; then
@@ -50,6 +60,7 @@ fi
 
 if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]; then
 	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+	export PATH
 fi
 
 export PATH
