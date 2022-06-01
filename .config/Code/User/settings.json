@@ -20,7 +20,8 @@
         "**/.env/**": true,
         "**/ENV/**": true,
         "**/env.bak/**": true,
-        "**/venv.bak/**": true
+        "**/venv.bak/**": true,
+        "**/.trunk/*out": true
     },
     "files.watcherExclude": {
         "**/.classpath": true,
@@ -36,7 +37,8 @@
         "**/.env/**": true,
         "**/ENV/**": true,
         "**/env.bak/**": true,
-        "**/venv.bak/**": true
+        "**/venv.bak/**": true,
+        "**/.trunk/*out": true
     },
     "redhat.telemetry.enabled": false,
     "explorer.confirmDelete": false,
@@ -130,5 +132,8 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
     }
 }
