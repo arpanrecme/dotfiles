@@ -49,6 +49,7 @@ fi
 
 if [[ -f "$HOME/.local/share/gradle/bin/gradle" ]] && [[ ! "$PATH" =~ $HOME/.local/share/gradle/bin/gradle: ]]; then
 	PATH="$HOME/.local/share/gradle/bin:$PATH"
+	export GRADLE_HOME="$HOME/.local/share/gradle"
 	export PATH
 fi
 
