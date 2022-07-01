@@ -23,7 +23,9 @@ fi
 
 # shellcheck source=/dev/null
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
-
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 # shellcheck source=/dev/null
 if [ -f "$HOME/.dotfiles/linode_cli_completion.sh" ]; then
 	source "$HOME/.dotfiles/linode_cli_completion.sh"
@@ -89,6 +91,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
 
 # shellcheck source=/dev/null
 if [ -f ~/.bash_aliases ]; then
