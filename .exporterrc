@@ -76,7 +76,11 @@ if hash vim &>/dev/null; then
 	export EDITOR=vim
 fi
 
-if [[ ! -f "/usr/lib/ssh/ssh-askpass" ]]; then
-	SSH_ASKPASS='/usr/bin/ksshaskpass'
+if [[ -f "/usr/bin/ksshaskpass" ]]; then
+	SSH_ASKPASS="/usr/bin/ksshaskpass"
 	export SSH_ASKPASS
+	SH_ASKPASS_REQUIRE=prefer
+	export SH_ASKPASS_REQUIRE
+	GIT_ASKPASS="/usr/bin/ksshaskpass"
+	export GIT_ASKPASS
 fi
