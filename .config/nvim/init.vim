@@ -39,7 +39,7 @@ nmap <F8> :TagbarToggle<CR>
 
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
-
+let g:coc_disable_startup_warning = 1
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
 "
