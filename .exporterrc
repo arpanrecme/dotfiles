@@ -8,60 +8,65 @@ LD_LIBRARY_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
 if ! [[ "$PATH" =~ /usr/local/bin: ]]; then
-	PATH="/usr/local/bin:$PATH"
-	export PATH
+    PATH="/usr/local/bin:$PATH"
+    export PATH
 fi
 
 # shellcheck source=/dev/null
 if [ -f "$HOME/.secrets" ]; then
-	source "$HOME/.secrets"
+    source "$HOME/.secrets"
 fi
 
 if [ -f "$HOME/.local/share/go/bin/go" ] && [[ ! "$PATH" =~ $HOME/.local/share/go/bin: ]]; then
-	PATH="$HOME/.local/share/go/bin:$PATH"
-	export PATH
+    PATH="$HOME/.local/share/go/bin:$PATH"
+    export PATH
 fi
 
 export GOPATH="$HOME/go"
 
+if [[ ! "$PATH" =~ $HOME/.go/bin: ]]; then
+    PATH="$HOME/.go/bin:$PATH"
+    export PATH
+fi
+
 if [ -f "$HOME/.local/share/node/bin/node" ] && [[ ! "$PATH" =~ $HOME/.local/share/node/bin: ]]; then
-	PATH="$HOME/.local/share/node/bin:$PATH"
-	export PATH
+    PATH="$HOME/.local/share/node/bin:$PATH"
+    export PATH
 fi
 
 if [[ -f "$HOME/.local/share/java/bin/java" ]] && [[ ! "$PATH" =~ $HOME/.local/share/java/bin: ]]; then
-	PATH="$HOME/.local/share/java/bin:$PATH"
-	export PATH
+    PATH="$HOME/.local/share/java/bin:$PATH"
+    export PATH
 fi
 
 if hash javac &>/dev/null; then
-	JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which javac)")")")
-	export JAVA_HOME
+    JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which javac)")")")
+    export JAVA_HOME
 elif hash java &>/dev/null; then
-	JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which java)")")")
-	export JAVA_HOME
+    JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$(which java)")")")
+    export JAVA_HOME
 fi
 
 if [[ -f "$HOME/.local/share/maven/bin/mvn" ]] && [[ ! "$PATH" =~ $HOME/.local/share/maven/bin: ]]; then
-	PATH="$HOME/.local/share/maven/bin:$PATH"
-	export PATH
+    PATH="$HOME/.local/share/maven/bin:$PATH"
+    export PATH
 fi
 
 if [[ -f "$HOME/.local/share/gradle/bin/gradle" ]] && [[ ! "$PATH" =~ $HOME/.local/share/gradle/bin/gradle: ]]; then
-	PATH="$HOME/.local/share/gradle/bin:$PATH"
-	export GRADLE_HOME="$HOME/.local/share/gradle"
-	export PATH
+    PATH="$HOME/.local/share/gradle/bin:$PATH"
+    export GRADLE_HOME="$HOME/.local/share/gradle"
+    export PATH
 fi
 
 if hash mvn &>/dev/null; then
-	M2_HOME=$(dirname "$(dirname "$(readlink -f "$(which mvn)")")")
-	export M2_HOME
-	export MAVEN_HOME="${M2_HOME}"
+    M2_HOME=$(dirname "$(dirname "$(readlink -f "$(which mvn)")")")
+    export M2_HOME
+    export MAVEN_HOME="${M2_HOME}"
 fi
 
 if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]; then
-	PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-	export PATH
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    export PATH
 fi
 
 export PATH
@@ -73,14 +78,14 @@ export GPG_TTY
 # gpg-connect-agent updatestartuptty /bye >/dev/null
 
 if hash vim &>/dev/null; then
-	export EDITOR=vim
+    export EDITOR=vim
 fi
 
 if [[ -f "/usr/bin/ksshaskpass" ]]; then
-	SSH_ASKPASS="/usr/bin/ksshaskpass"
-	export SSH_ASKPASS
-	SH_ASKPASS_REQUIRE=prefer
-	export SH_ASKPASS_REQUIRE
-	GIT_ASKPASS="/usr/bin/ksshaskpass"
-	export GIT_ASKPASS
+    SSH_ASKPASS="/usr/bin/ksshaskpass"
+    export SSH_ASKPASS
+    SH_ASKPASS_REQUIRE=prefer
+    export SH_ASKPASS_REQUIRE
+    GIT_ASKPASS="/usr/bin/ksshaskpass"
+    export GIT_ASKPASS
 fi
