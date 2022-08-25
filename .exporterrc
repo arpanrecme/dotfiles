@@ -52,7 +52,7 @@ if [[ -f "$HOME/.local/share/maven/bin/mvn" ]] && [[ ! "$PATH" =~ $HOME/.local/s
     export PATH
 fi
 
-if [[ -f "$HOME/.local/share/gradle/bin/gradle" ]] && [[ ! "$PATH" =~ $HOME/.local/share/gradle/bin/gradle: ]]; then
+if [[ -f "$HOME/.local/share/gradle/bin/gradle" ]] && [[ ! "$PATH" =~ $HOME/.local/share/gradle/bin: ]]; then
     PATH="$HOME/.local/share/gradle/bin:$PATH"
     export GRADLE_HOME="$HOME/.local/share/gradle"
     export PATH
