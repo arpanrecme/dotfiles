@@ -7,7 +7,7 @@
 [pull]
 	rebase = false
 [credential]
-	helper = store
+	helper = store --file=\"$HOME/.git-credentials\"
 [push]
 	followTags = true
 [commit]
