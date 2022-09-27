@@ -124,7 +124,7 @@
     "telemetry.telemetryLevel": "off",
     "trunk.trunkGrayOutNonBlockingIssues": false,
     "[yaml]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m",
     "[shellscript]": {
@@ -135,5 +135,8 @@
     },
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
     }
 }
