@@ -2,8 +2,8 @@
 	defaultBranch = main
 [user]
 	name = arpan
-	email = me@arpanrec.com
-	signingkey = B9A81CB849629C6341EC0AACD813A505EB696576
+	email = arpan.rec@gmail.com
+	signingkey = 1B0D9C73D1221DB0DB64592912086B524AF4FD70
 [pull]
 	rebase = false
 [credential]
