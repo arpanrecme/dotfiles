@@ -1,6 +1,6 @@
 : <<COMMENT
-Author: arpan <me@arpanrec.com>
-This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.zshrc
+Author: arpan <arpan.rec@gmail.com>
+This file is managed from https://github.com/arpanrecme/dotfiles/blob/main/.zshrc
 COMMENT
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
