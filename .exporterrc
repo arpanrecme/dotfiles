@@ -17,6 +17,11 @@ if [ -f "$HOME/.secrets" ]; then
     source "$HOME/.secrets"
 fi
 
+for secret_file in ~/.secrets.d/*.sh; do
+    ## Pickup any file ends with .sh
+    source "${secret_file}"
+done
+
 if [ -f "$HOME/.local/share/go/bin/go" ] && [[ ! "$PATH" =~ $HOME/.local/share/go/bin: ]]; then
     PATH="$HOME/.local/share/go/bin:$PATH"
     export PATH
