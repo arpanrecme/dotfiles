@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 : <<COMMENT
 Author: arpan <me@arpanrec.com>
-This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.exporterrc
+This file is managed from https://github.com/arpanrecme/dotfiles/blob/main/.exporterrc
 COMMENT
 
 LD_LIBRARY_PATH=$HOME/.local/lib64:$HOME/.local/lib:$LD_LIBRARY_PATH
