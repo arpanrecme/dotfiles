@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 : <<COMMENT
-Author: arpan <me@arpanrec.com>
+Author: arpan <arpan.rec@gmail.com>
 This file is managed from https://github.com/arpanrecme/dotfiles/blob/main/.exporterrc
 COMMENT
 
