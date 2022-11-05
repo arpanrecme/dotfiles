@@ -2,8 +2,8 @@
 # .bash_profile
 
 : <<COMMENT
-Author: arpan <me@arpanrec.com>
-This file is managed from https://github.com/arpanrec/dotfiles/blob/main/.aliasrc
+Author: arpan <arpan.rec@gmail.com>
+This file is managed from https://github.com/arpanrecme/dotfiles/blob/main/.bash_profile
 COMMENT
 
 # Get the aliases and functions
