@@ -19,6 +19,7 @@ fi
 
 for secret_file in ~/.secrets.d/*.sh; do
     ## Pickup any file ends with .sh
+    # shellcheck source=/dev/null
     source "${secret_file}"
 done
 
