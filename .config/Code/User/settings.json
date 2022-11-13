@@ -66,7 +66,7 @@
     "editor.fontFamily": "'Cascadia Code', 'Hack Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "git.ignoreLegacyWarning": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "GitHub Dark Default",
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
         "files.trimTrailingWhitespace": false
