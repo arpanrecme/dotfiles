@@ -138,5 +138,8 @@
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[terraform]": {
+        "editor.defaultFormatter": "trunk.io"
     }
 }
