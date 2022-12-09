@@ -71,6 +71,10 @@
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
         "files.trimTrailingWhitespace": false
     },
+    "ansible.validation.lint.enabled": true,
+    "ansible.ansible.useFullyQualifiedCollectionNames": true,
+    "ansible.validation.lint.path": "ansible-lint",
+    "ansible.validation.enabled": true,
     "workbench.startupEditor": "none",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
@@ -78,14 +82,14 @@
     "python.formatting.blackPath": "black",
     "python.formatting.autopep8Path": "autopep8",
     "python.formatting.autopep8Args": [
-        "--indent-size=4",
+        "--indent-size=2",
         "--max-line-length=180"
     ],
     "python.formatting.blackArgs": [
         "--line-length",
         "180"
     ],
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
@@ -136,13 +140,17 @@
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[terraform]": {
-        "editor.defaultFormatter": "trunk.io"
+        "editor.defaultFormatter": "hashicorp.terraform"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.tabSize": 2,
+        "editor.indentSize": "tabSize",
+        "files.insertFinalNewline": false,
+        "files.trimFinalNewlines": true
     },
     "[ansible]": {
         "editor.defaultFormatter": "trunk.io"
-    }
+    },
 }
