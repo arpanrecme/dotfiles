@@ -12,6 +12,16 @@ if ! [[ "$PATH" =~ /usr/local/bin: ]]; then
     export PATH
 fi
 
+if ! [[ "$PATH" =~ /usr/local/sbin: ]]; then
+    PATH="/usr/local/sbin:$PATH"
+    export PATH
+fi
+
+if ! [[ "$PATH" =~ /sbin: ]]; then
+    PATH="/sbin:$PATH"
+    export PATH
+fi
+
 # shellcheck source=/dev/null
 if [ -f "$HOME/.secrets" ]; then
     source "$HOME/.secrets"
